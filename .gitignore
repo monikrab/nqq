@@ -16,6 +16,10 @@ build-notepadqq-Desktop*
 /build
 /src/ui/ui.pro.user
 /src/ui/ui.pro.user.*
+
+# Ignore old CodeMirror implementation
+/src/editor/libs/codemirror_old
+
 /notepadqq.pro.user
 
 /.qmake.stash

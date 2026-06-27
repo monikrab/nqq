@@ -178,7 +178,7 @@ function buildToken(builder, text, style, startStyle, endStyle, css, attributes)
     }
   }
   builder.trailingSpace = displayText.charCodeAt(text.length - 1) == 32
-  if (style || startStyle || endStyle || mustWrap || css) {
+  if (style || startStyle || endStyle || mustWrap || css || attributes) {
     let fullStyle = style || ""
     if (startStyle) fullStyle += startStyle
     if (endStyle) fullStyle += endStyle
@@ -277,7 +277,7 @@ function insertLineContent(line, builder, styles) {
           if (m.startStyle && sp.from == pos) spanStartStyle += " " + m.startStyle
           if (m.endStyle && sp.to == nextChange) (endStyles || (endStyles = [])).push(m.endStyle, sp.to)
           // support for the old title property
-          // https://github.com/codemirror/CodeMirror/pull/5673
+          // https://code.haverbeke.berlin/codemirror/codemirror/pull/5673
           if (m.title) (attributes || (attributes = {})).title = m.title
           if (m.attributes) {
             for (let attr in m.attributes)

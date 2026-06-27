@@ -106,7 +106,7 @@ export function setSelectionNoUndo(doc, sel, options) {
     (cmp(sel.primary().head, doc.sel.primary().head) < 0 ? -1 : 1)
   setSelectionInner(doc, skipAtomicInSelection(doc, sel, bias, true))
 
-  if (!(options && options.scroll === false) && doc.cm)
+  if (!(options && options.scroll === false) && doc.cm && doc.cm.getOption("readOnly") != "nocursor")
     ensureCursorVisible(doc.cm)
 }
 
@@ -137,7 +137,7 @@ function skipAtomicInSelection(doc, sel, bias, mayClear) {
     let range = sel.ranges[i]
     let old = sel.ranges.length == doc.sel.ranges.length && doc.sel.ranges[i]
     let newAnchor = skipAtomic(doc, range.anchor, old && old.anchor, bias, mayClear)
-    let newHead = skipAtomic(doc, range.head, old && old.head, bias, mayClear)
+    let newHead = range.head == range.anchor ? newAnchor : skipAtomic(doc, range.head, old && old.head, bias, mayClear)
     if (out || newAnchor != range.anchor || newHead != range.head) {
       if (!out) out = sel.ranges.slice(0, i)
       out[i] = new Range(newAnchor, newHead)

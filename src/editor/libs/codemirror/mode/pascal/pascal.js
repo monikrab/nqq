@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: https://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -50,7 +50,11 @@ CodeMirror.defineMode("pascal", function() {
       state.tokenize = tokenComment;
       return tokenComment(stream, state);
     }
-    if (/[\[\]{}\(\),;\:\.]/.test(ch)) {
+    if (ch == "{") {
+      state.tokenize = tokenCommentBraces;
+      return tokenCommentBraces(stream, state);
+    }
+    if (/[\[\]\(\),;\:\.]/.test(ch)) {
       return null;
     }
     if (/\d/.test(ch)) {
@@ -68,7 +72,7 @@ CodeMirror.defineMode("pascal", function() {
       return "operator";
     }
     stream.eatWhile(/[\w\$_]/);
-    var cur = stream.current();
+    var cur = stream.current().toLowerCase();
     if (keywords.propertyIsEnumerable(cur)) return "keyword";
     if (atoms.propertyIsEnumerable(cur)) return "atom";
     return "variable";
@@ -94,6 +98,17 @@ CodeMirror.defineMode("pascal", function() {
         break;
       }
       maybeEnd = (ch == "*");
+    }
+    return "comment";
+  }
+
+  function tokenCommentBraces(stream, state) {
+    var ch;
+    while (ch = stream.next()) {
+      if (ch == "}") {
+        state.tokenize = null;
+        break;
+      }
     }
     return "comment";
   }

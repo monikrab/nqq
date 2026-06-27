@@ -1,8 +1,6 @@
-# CodeMirror
+# CodeMirror 5
 
-[![Build Status](https://travis-ci.org/codemirror/CodeMirror.svg)](https://travis-ci.org/codemirror/CodeMirror)
-[![NPM version](https://img.shields.io/npm/v/codemirror.svg)](https://www.npmjs.org/package/codemirror)
-[![Join the chat at https://gitter.im/codemirror/CodeMirror](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/codemirror/CodeMirror)  
+**NOTE:** [CodeMirror 6](https://codemirror.net/) exists, and is more mobile-friendly, more accessible, better designed, and much more actively maintained.
 
 CodeMirror is a versatile text editor implemented in JavaScript for
 the browser. It is specialized for editing code, and comes with over
@@ -15,12 +13,12 @@ customizing CodeMirror to fit your application, and extending it with
 new functionality.
 
 You can find more information (and the
-[manual](https://codemirror.net/doc/manual.html)) on the [project
-page](https://codemirror.net). For questions and discussion, use the
+[manual](https://codemirror.net/5/doc/manual.html)) on the [project
+page](https://codemirror.net/5/). For questions and discussion, use the
 [discussion forum](https://discuss.codemirror.net/).
 
 See
-[CONTRIBUTING.md](https://github.com/codemirror/CodeMirror/blob/master/CONTRIBUTING.md)
+[CONTRIBUTING.md](https://code.haverbeke.berlin/codemirror/codemirror5/src/branch/main/CONTRIBUTING.md)
 for contributing guidelines.
 
 The CodeMirror community aims to be welcoming to everybody. We use the
@@ -30,11 +28,11 @@ conduct.
 
 ### Installation
 
-Either get the [zip file](https://codemirror.net/codemirror.zip) with
+Either get the [zip file](https://codemirror.net/5/codemirror.zip) with
 the latest version, or make sure you have [Node](https://nodejs.org/)
 installed and run:
 
-    npm install codemirror
+    npm install codemirror@5
 
 **NOTE**: This is the source repository for the library, and not the
 distribution channel. Cloning it is not the recommended way to install

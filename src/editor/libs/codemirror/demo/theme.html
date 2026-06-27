@@ -7,8 +7,11 @@
 <link rel="stylesheet" href="../lib/codemirror.css">
 <link rel="stylesheet" href="../theme/3024-day.css">
 <link rel="stylesheet" href="../theme/3024-night.css">
+<link rel="stylesheet" href="../theme/abbott.css">
 <link rel="stylesheet" href="../theme/abcdef.css">
 <link rel="stylesheet" href="../theme/ambiance.css">
+<link rel="stylesheet" href="../theme/ayu-dark.css">
+<link rel="stylesheet" href="../theme/ayu-mirage.css">
 <link rel="stylesheet" href="../theme/base16-dark.css">
 <link rel="stylesheet" href="../theme/bespin.css">
 <link rel="stylesheet" href="../theme/base16-light.css">
@@ -25,14 +28,19 @@
 <link rel="stylesheet" href="../theme/hopscotch.css">
 <link rel="stylesheet" href="../theme/icecoder.css">
 <link rel="stylesheet" href="../theme/isotope.css">
+<link rel="stylesheet" href="../theme/juejin.css">
 <link rel="stylesheet" href="../theme/lesser-dark.css">
 <link rel="stylesheet" href="../theme/liquibyte.css">
 <link rel="stylesheet" href="../theme/lucario.css">
 <link rel="stylesheet" href="../theme/material.css">
+<link rel="stylesheet" href="../theme/material-darker.css">
+<link rel="stylesheet" href="../theme/material-palenight.css">
+<link rel="stylesheet" href="../theme/material-ocean.css">
 <link rel="stylesheet" href="../theme/mbo.css">
 <link rel="stylesheet" href="../theme/mdn-like.css">
 <link rel="stylesheet" href="../theme/midnight.css">
 <link rel="stylesheet" href="../theme/monokai.css">
+<link rel="stylesheet" href="../theme/moxer.css">
 <link rel="stylesheet" href="../theme/neat.css">
 <link rel="stylesheet" href="../theme/neo.css">
 <link rel="stylesheet" href="../theme/night.css">
@@ -68,12 +76,12 @@
       .CodeMirror {border: 1px solid black; font-size:13px}
     </style>
 <div id=nav>
-  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+  <a href="https://codemirror.net/5"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
 
   <ul>
     <li><a href="../index.html">Home</a>
     <li><a href="../doc/manual.html">Manual</a>
-    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+    <li><a href="https://code.haverbeke.berlin/codemirror/codemirror5">Code</a>
   </ul>
   <ul>
     <li><a class=active href="#">Theme</a>
@@ -100,8 +108,11 @@ function findSequence(goal) {
     <option selected>default</option>
     <option>3024-day</option>
     <option>3024-night</option>
+    <option>abbott</option>
     <option>abcdef</option>
     <option>ambiance</option>
+    <option>ayu-dark</option>
+    <option>ayu-mirage</option>
     <option>base16-dark</option>
     <option>base16-light</option>
     <option>bespin</option>
@@ -120,14 +131,19 @@ function findSequence(goal) {
     <option>icecoder</option>
     <option>idea</option>
     <option>isotope</option>
+    <option>juejin</option>
     <option>lesser-dark</option>
     <option>liquibyte</option>
     <option>lucario</option>
     <option>material</option>
+    <option>material-darker</option>
+    <option>material-palenight</option>
+    <option>material-ocean</option>
     <option>mbo</option>
     <option>mdn-like</option>
     <option>midnight</option>
     <option>monokai</option>
+    <option>moxer</option>
     <option>neat</option>
     <option>neo</option>
     <option>night</option>
@@ -167,9 +183,10 @@ function findSequence(goal) {
   function selectTheme() {
     var theme = input.options[input.selectedIndex].textContent;
     editor.setOption("theme", theme);
-    location.hash = "#" + theme;
+    location.hash = "#" + encodeURIComponent(theme);
   }
-  var choice = (location.hash && location.hash.slice(1)) ||
+  var choice = (location.hash &&
+                decodeURIComponent(location.hash.slice(1))) ||
                (document.location.search &&
                 decodeURIComponent(document.location.search.slice(1)));
   if (choice) {
@@ -177,8 +194,8 @@ function findSequence(goal) {
     editor.setOption("theme", choice);
   }
   CodeMirror.on(window, "hashchange", function() {
-    var theme = location.hash.slice(1);
+    var theme = decodeURIComponent(location.hash.slice(1));
     if (theme) { input.value = theme; selectTheme(); }
   });
 </script>
-  </article>
+</article>
