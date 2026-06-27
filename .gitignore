@@ -18,7 +18,7 @@ build-notepadqq-Desktop*
 /src/ui/ui.pro.user.*
 
 # Ignore old CodeMirror implementation
-/src/editor/libs/codemirror_old
+/src/editor/libs/codemirror_old/
 
 /notepadqq.pro.user
 
