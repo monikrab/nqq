@@ -14,16 +14,15 @@
 
 * [What is it?](#what-is-it)
 * [Build it yourself](#build-it-yourself)
-* [Download it](#distribution-packages)
 
 
 #### What is it?
 
-Notepadqq is a text editor designed by developers, for developers. 
+Notepadqq is a text editor designed by developers, for developers. This is an opinionated fork, with changes made mostly inline with a ML/DL research workflow, and my personal taste.
 
 ![screenshot_20180302_163505](https://notepadqq.com/s/images/snapshot1.png)
 
-Please visit our [Wiki](https://github.com/notepadqq/notepadqq/wiki) for more screenshots and details.
+Refer to [Notepadqq's wiki](https://github.com/notepadqq/notepadqq/wiki) for more screenshots and details.
 
 
 Build it yourself
