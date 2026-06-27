@@ -1,8 +1,7 @@
 # <img src="https://user-images.githubusercontent.com/4319621/36906314-e3f99680-1e35-11e8-90fd-f959c9641f36.png" alt="Notepadqq" width="32" height="32" /> monikrab's Notepadqq fork
 
 > [!WARNING]  
-> This project is actively maintained by myself
-> Changes are made to fit my needs, and my needs only
+> This project is actively maintained by myself. Changes are made to fit my needs, and my needs only
 >
 > The editor is meant to work on Arch-based distributions, and is not tested anywhere else
 >
