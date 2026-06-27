@@ -3,11 +3,11 @@
 > [!WARNING]  
 > This project is actively maintained by myself. Changes are made to fit my needs, and my needs only
 >
-> The editor is meant to work on Arch-based distributions, and is not tested anywhere else
+> The editor is meant to work on Arch-based distributions, and is not tested anywhere else.
 >
 > If my changes please you, grab one of the releases and try it out!
 >
-> If you find a flaw or wish for a feature, please fork the project.
+> If you find a flaw or wish for a feature, please fork the project and suit yourself.
 
 
 ### Links
@@ -18,9 +18,9 @@
 
 #### What is it?
 
-Notepadqq is a text editor designed by developers, for developers. This is an opinionated fork, with changes made mostly inline with a ML/DL research workflow, and my personal taste.
+Notepadqq is a text editor designed for developers. This is an opinionated fork, with changes made mostly inline with a ML/DL research workflow, and my personal taste.
 
-![screenshot_20180302_163505](https://notepadqq.com/s/images/snapshot1.png)
+![screenshot_20180302_163505](https://notepadqq.com/s/images/snapshot_math.png)
 
 Refer to [Notepadqq's wiki](https://github.com/notepadqq/notepadqq/wiki) for more screenshots and details.
 
