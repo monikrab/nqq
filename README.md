@@ -8,6 +8,7 @@
 * [Build it yourself](#build-it-yourself)
 
 
+
 #### What is it?
 
 Notepadqq is a text editor designed for developers. This is my own opinionated fork, with changes made according to my needs.
@@ -15,6 +16,7 @@ Notepadqq is a text editor designed for developers. This is my own opinionated f
 ![screenshot_20180302_163505](https://notepadqq.com/s/images/snapshot_math.png)
 
 Refer to [Notepadqq's wiki](https://github.com/notepadqq/notepadqq/wiki) for more screenshots and details.
+
 
 
 Build it yourself
@@ -31,10 +33,13 @@ Build it yourself
 | pkgconf             |                   |
 
 
+
 #### Get the source
 
     $ git clone --recursive https://github.com/monikrab/nqq.git
     $ cd notepadqq
+
+
 
 #### Build
 
@@ -50,10 +55,6 @@ If you encounter errors make sure to have the necessary libraries installed. For
 
     yay -S qt6-tools qt6-tools-dev-tools qt6-webengine qt6-websockets qt6-svg uchardet pkgconf
 
-
-#### Run tests
-
-    notepadqq$ ctest --preset release
 
 
 #### Install
