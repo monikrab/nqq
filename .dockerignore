@@ -1,6 +1,0 @@
-/out
-*.moc
-moc_*.cpp
-*_automoc.dir/
-CMakeFiles/
-CMakeCache.txt
