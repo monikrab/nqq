@@ -43,13 +43,13 @@ Build it yourself
 
 #### Build
 
-    notepadqq$ cmake --preset release
-    notepadqq$ cmake --build --preset release
+    cmake --preset release
+    cmake --build --preset release
 
 To build with debug symbols, use the `dev` preset instead:
 
-    notepadqq$ cmake --preset dev
-    notepadqq$ cmake --build --preset dev
+    cmake --preset dev
+    cmake --build --preset dev
 
 If you encounter errors make sure to have the necessary libraries installed. For Arch you can do that using `yay`:
 
@@ -62,4 +62,4 @@ If you encounter errors make sure to have the necessary libraries installed. For
 You can run notepadqq from its build output folder. If however you want to install it, first build it
 by following the above steps, then run:
 
-    notepadqq$ sudo cmake --install build/release
+    sudo cmake --install build/release
