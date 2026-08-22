@@ -1,0 +1,78 @@
+diff --git a/src/editor/features/latex/latex.js b/src/editor/features/latex/latex.js
+index 0b57d6d..c6c16be 100644
+--- a/src/editor/features/latex/latex.js
++++ b/src/editor/features/latex/latex.js
+@@ -12,10 +12,11 @@ define([], function () {
+                 jax: ["input/TeX", "output/CommonHTML"], // TODO: Use HTML-CSS when on WebEngine
+                 extensions: ["tex2jax.js"],
+                 tex2jax: {
+-                    //inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+-                    //displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+-                    inlineMath: [ ['$','$'] ],
+-                    displayMath: [ ['$$','$$'] ],
++                    // Re-add support for \(...\) and \[...\] LaTeX brackets
++                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
++                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
++                    // inlineMath: [ ['$','$'] ],
++                    // displayMath: [ ['$$','$$'] ],
+                     processEscapes: true,
+                     /* Previews of all kinds are useless — math is hidden until fully rendered. */
+                     preview: "none"
+@@ -73,4 +74,4 @@ define([], function () {
+     }
+ 
+     return obj;
+-});
+\ No newline at end of file
++});
+diff --git a/src/editor/features/latex/render-math.js b/src/editor/features/latex/render-math.js
+index bf0a32f..fb8d7b1 100644
+--- a/src/editor/features/latex/render-math.js
++++ b/src/editor/features/latex/render-math.js
+@@ -29,23 +29,23 @@ define([], function() {
+     }
+ 
+     // Returns whether math parsing is allowed for a formula starting in the specified position.
+-    // This will, for example, return true if we're within a comment.
+     function mathModeAllowed(editor, startPosition) {
+-        // Plain text
+-        //if (editor.getMode().name === "null" || editor.getMode().name === null) return true;
+-
+-        // Allow Markdown if within a simple text portion
+-        if (editor.getMode().name === "markdown" || editor.getMode().name === "gfm") {
+-            // For some reason, code blocks are marked as comments. Make sure to
+-            // not display math in such cases.
+-            var blacklist = ['comment'];
+-            return blacklist.indexOf(editor.getTokenTypeAt(startPosition)) === -1;
+-        }
+-
+-        // Allow any other language if within a comment
+-        if (editor.getTokenTypeAt(startPosition) == "comment") return true; // TODO: use more precise "getTokenAt"?
+-
+-        return false;
++        // Allow LaTeX rendering globally
++        return true;
++
++        // // Plain text
++        // //if (editor.getMode().name === "null" || editor.getMode().name === null) return true;
++
++        // // Allow Markdown if within a simple text portion
++        // if (editor.getMode().name === "markdown" || editor.getMode().name === "gfm") {
++        //     // For some reason, code blocks are marked as comments. Make sure to
++        //     // not display math in such cases.
++        //     var blacklist = ['comment'];
++        //     return blacklist.indexOf(editor.getTokenTypeAt(startPosition)) === -1;
++        // }
++
++        // // Allow any other language if within a comment
++        // if (editor.getTokenTypeAt(startPosition) == "comment") return true; // TODO: use more precise "getTokenAt"?
+     }
+ 
+     function catchAllErrors(func) {
+@@ -410,4 +410,4 @@ define([], function() {
+     };
+ 
+     return InlineMath;
+-})
+\ No newline at end of file
++})

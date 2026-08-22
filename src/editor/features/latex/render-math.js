@@ -29,23 +29,23 @@ define([], function() {
     }
 
     // Returns whether math parsing is allowed for a formula starting in the specified position.
-    // This will, for example, return true if we're within a comment.
     function mathModeAllowed(editor, startPosition) {
-        // Plain text
-        //if (editor.getMode().name === "null" || editor.getMode().name === null) return true;
+        // Allow LaTeX rendering globally
+        return true;
 
-        // Allow Markdown if within a simple text portion
-        if (editor.getMode().name === "markdown" || editor.getMode().name === "gfm") {
-            // For some reason, code blocks are marked as comments. Make sure to
-            // not display math in such cases.
-            var blacklist = ['comment'];
-            return blacklist.indexOf(editor.getTokenTypeAt(startPosition)) === -1;
-        }
+        // // Plain text
+        // //if (editor.getMode().name === "null" || editor.getMode().name === null) return true;
 
-        // Allow any other language if within a comment
-        if (editor.getTokenTypeAt(startPosition) == "comment") return true; // TODO: use more precise "getTokenAt"?
+        // // Allow Markdown if within a simple text portion
+        // if (editor.getMode().name === "markdown" || editor.getMode().name === "gfm") {
+        //     // For some reason, code blocks are marked as comments. Make sure to
+        //     // not display math in such cases.
+        //     var blacklist = ['comment'];
+        //     return blacklist.indexOf(editor.getTokenTypeAt(startPosition)) === -1;
+        // }
 
-        return false;
+        // // Allow any other language if within a comment
+        // if (editor.getTokenTypeAt(startPosition) == "comment") return true; // TODO: use more precise "getTokenAt"?
     }
 
     function catchAllErrors(func) {

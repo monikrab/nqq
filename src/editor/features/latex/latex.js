@@ -12,10 +12,11 @@ define([], function () {
                 jax: ["input/TeX", "output/CommonHTML"], // TODO: Use HTML-CSS when on WebEngine
                 extensions: ["tex2jax.js"],
                 tex2jax: {
-                    //inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                    //displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-                    inlineMath: [ ['$','$'] ],
-                    displayMath: [ ['$$','$$'] ],
+                    // Re-add support for \(...\) and \[...\] LaTeX brackets
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    // inlineMath: [ ['$','$'] ],
+                    // displayMath: [ ['$$','$$'] ],
                     processEscapes: true,
                     /* Previews of all kinds are useless — math is hidden until fully rendered. */
                     preview: "none"
