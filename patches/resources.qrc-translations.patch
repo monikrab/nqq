@@ -1,0 +1,25 @@
+diff --git a/src/ui/resources.qrc b/src/ui/resources.qrc
+index 8b9d21b..4a4e70d 100644
+--- a/src/ui/resources.qrc
++++ b/src/ui/resources.qrc
+@@ -48,20 +48,4 @@
+ 		<file alias="scalable/view-fullscreen.svg">icons/notepadqq/scalable/view-fullscreen.svg</file>
+ 		<file alias="scalable/view-refresh.svg">icons/notepadqq/scalable/view-refresh.svg</file>
+     </qresource>
+-    <qresource prefix="/translations">
+-        <file alias="notepadqq_de.qm">../translations/notepadqq_de.qm</file>
+-        <file alias="notepadqq_es.qm">../translations/notepadqq_es.qm</file>
+-        <file alias="notepadqq_fr.qm">../translations/notepadqq_fr.qm</file>
+-        <file alias="notepadqq_hu.qm">../translations/notepadqq_hu.qm</file>
+-        <file alias="notepadqq_it.qm">../translations/notepadqq_it.qm</file>
+-        <file alias="notepadqq_ja.qm">../translations/notepadqq_ja.qm</file>
+-        <file alias="notepadqq_nl.qm">../translations/notepadqq_nl.qm</file>
+-        <file alias="notepadqq_pl.qm">../translations/notepadqq_pl.qm</file>
+-        <file alias="notepadqq_pt.qm">../translations/notepadqq_pt.qm</file>
+-        <file alias="notepadqq_ru.qm">../translations/notepadqq_ru.qm</file>
+-        <file alias="notepadqq_sl.qm">../translations/notepadqq_sl.qm</file>
+-        <file alias="notepadqq_sv.qm">../translations/notepadqq_sv.qm</file>
+-        <file alias="notepadqq_uk.qm">../translations/notepadqq_uk.qm</file>
+-        <file alias="notepadqq_zh.qm">../translations/notepadqq_zh.qm</file>
+-    </qresource>
+ </RCC>

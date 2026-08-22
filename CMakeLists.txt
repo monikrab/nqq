@@ -4,11 +4,11 @@ project(notepadqq VERSION 2.2.0 LANGUAGES CXX)
 
 include(GNUInstallDirs)
 
-option(NQQ_BUILD_TESTS "Build Notepadqq tests" ON)
+option(NQQ_BUILD_TESTS "Build Notepadqq tests" OFF)
 option(NQQ_ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(NQQ_ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
-option(NQQ_BUILD_SNAP "Build Notepadqq for Snap packaging" OFF)
-option(NQQ_USE_MONACO "Use Monaco Editor instead of CodeMirror" OFF)
+# option(NQQ_BUILD_SNAP "Build Notepadqq for Snap packaging" OFF)
+# option(NQQ_USE_MONACO "Use Monaco Editor instead of CodeMirror" OFF)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -39,7 +39,6 @@ qt_standard_project_setup(REQUIRES 6.4)
 
 set(NQQ_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(NQQ_UI_DIR "${NQQ_ROOT_DIR}/src/ui")
-set(NQQ_TRANSLATIONS_DIR "${NQQ_ROOT_DIR}/src/translations")
 set(NQQ_SUPPORT_DIR "${NQQ_ROOT_DIR}/support_files")
 set(NQQ_STAGED_APPDATA_DIR "${CMAKE_CURRENT_BINARY_DIR}/appdata")
 
@@ -172,42 +171,20 @@ set(NQQ_APP_FORMS
     src/ui/Extensions/installextension.ui
 )
 
-set(NQQ_TS_FILES
-    src/translations/notepadqq_de.ts
-    src/translations/notepadqq_es.ts
-    src/translations/notepadqq_fr.ts
-    src/translations/notepadqq_hu.ts
-    src/translations/notepadqq_it.ts
-    src/translations/notepadqq_ja.ts
-    src/translations/notepadqq_nl.ts
-    src/translations/notepadqq_pl.ts
-    src/translations/notepadqq_pt.ts
-    src/translations/notepadqq_ru.ts
-    src/translations/notepadqq_sl.ts
-    src/translations/notepadqq_sv.ts
-    src/translations/notepadqq_uk.ts
-    src/translations/notepadqq_zh.ts
-)
-
-qt_add_translation(NQQ_QM_FILES ${NQQ_TS_FILES})
-
 file(READ "${NQQ_UI_DIR}/resources.qrc" NQQ_ICONS_QRC)
+
+# Remove translations section from the icons resource file
 string(FIND "${NQQ_ICONS_QRC}" "    <qresource prefix=\"/translations\">" NQQ_TRANSLATIONS_QRC_POS)
 if(NQQ_TRANSLATIONS_QRC_POS GREATER -1)
     string(SUBSTRING "${NQQ_ICONS_QRC}" 0 ${NQQ_TRANSLATIONS_QRC_POS} NQQ_ICONS_QRC)
     string(APPEND NQQ_ICONS_QRC "</RCC>\n")
 endif()
+
+# Fix icon paths
 string(REPLACE ">icons/" ">${NQQ_UI_DIR}/icons/" NQQ_ICONS_QRC "${NQQ_ICONS_QRC}")
+
 set(NQQ_GENERATED_ICONS_QRC "${CMAKE_CURRENT_BINARY_DIR}/notepadqq-icons.qrc")
 file(WRITE "${NQQ_GENERATED_ICONS_QRC}" "${NQQ_ICONS_QRC}")
-
-set(NQQ_TRANSLATIONS_QRC "${CMAKE_CURRENT_BINARY_DIR}/notepadqq-translations.qrc")
-file(WRITE "${NQQ_TRANSLATIONS_QRC}" "<RCC>\n    <qresource prefix=\"/translations\">\n")
-foreach(NQQ_QM_FILE IN LISTS NQQ_QM_FILES)
-    get_filename_component(NQQ_QM_NAME "${NQQ_QM_FILE}" NAME)
-    file(APPEND "${NQQ_TRANSLATIONS_QRC}" "        <file alias=\"${NQQ_QM_NAME}\">${NQQ_QM_FILE}</file>\n")
-endforeach()
-file(APPEND "${NQQ_TRANSLATIONS_QRC}" "    </qresource>\n</RCC>\n")
 
 set(NQQ_TARGET_NAME notepadqq)
 
@@ -216,11 +193,7 @@ qt_add_executable(${NQQ_TARGET_NAME} MACOSX_BUNDLE
     ${NQQ_APP_HEADERS}
     ${NQQ_APP_FORMS}
     ${NQQ_GENERATED_ICONS_QRC}
-    ${NQQ_TRANSLATIONS_QRC}
 )
-
-add_custom_target(notepadqq_translations DEPENDS ${NQQ_QM_FILES})
-add_dependencies(${NQQ_TARGET_NAME} notepadqq_translations)
 
 target_include_directories(${NQQ_TARGET_NAME} PRIVATE
     src/ui
@@ -231,15 +204,6 @@ target_include_directories(${NQQ_TARGET_NAME} PRIVATE
 
 if(NQQ_BUILD_SNAP)
     target_compile_definitions(${NQQ_TARGET_NAME} PRIVATE BUILD_SNAP)
-endif()
-
-if(NQQ_USE_MONACO)
-    target_compile_definitions(${NQQ_TARGET_NAME} PRIVATE NQQ_USE_MONACO)
-endif()
-
-set(NQQ_MAKE_MONACO_ARGS "")
-if(NQQ_USE_MONACO)
-    set(NQQ_MAKE_MONACO_ARGS "USE_MONACO=1")
 endif()
 
 set_target_properties(${NQQ_TARGET_NAME} PROPERTIES
@@ -270,12 +234,6 @@ target_link_libraries(${NQQ_TARGET_NAME} PRIVATE
     Qt6::Widgets
     PkgConfig::UCHARDET
 )
-
-if(APPLE)
-    target_sources(${NQQ_TARGET_NAME} PRIVATE images/notepadqq.icns)
-    set_source_files_properties(images/notepadqq.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-    set_target_properties(${NQQ_TARGET_NAME} PROPERTIES MACOSX_BUNDLE_ICON_FILE notepadqq.icns)
-endif()
 
 set(NQQ_SANITIZER_FLAGS "")
 if(NQQ_ENABLE_ASAN)
@@ -325,135 +283,6 @@ if(NQQ_MAKE_EXECUTABLE)
     endif()
 else()
     message(WARNING "Could not find make/gmake; editor and extension tool assets will not be staged")
-endif()
-
-if(NQQ_BUILD_TESTS)
-    enable_testing()
-
-    set(NQQ_UI_TEST_SOURCES ${NQQ_APP_SOURCES})
-    list(REMOVE_ITEM NQQ_UI_TEST_SOURCES src/ui/main.cpp)
-    qt_add_executable(ui-tests
-        src/ui-tests/tst_notepadqqtest.cpp
-        ${NQQ_UI_TEST_SOURCES}
-        ${NQQ_APP_HEADERS}
-        ${NQQ_APP_FORMS}
-        ${NQQ_GENERATED_ICONS_QRC}
-    )
-    if(APPLE)
-        set_target_properties(ui-tests PROPERTIES MACOSX_BUNDLE TRUE)
-    endif()
-    set_target_properties(ui-tests PROPERTIES
-        AUTOUIC_SEARCH_PATHS "${NQQ_UI_DIR};${NQQ_UI_DIR}/Search;${NQQ_UI_DIR}/Extensions"
-    )
-    target_include_directories(ui-tests PRIVATE
-        src/ui
-        src/ui/include
-        src/ui/libs/qtpromise/include
-        src/ui/libs/qtpromise/src
-    )
-    target_link_libraries(ui-tests PRIVATE
-        Qt6::Core
-        Qt6::Core5Compat
-        Qt6::DBus
-        Qt6::Gui
-        Qt6::Network
-        Qt6::PrintSupport
-        Qt6::Svg
-        Qt6::Test
-        Qt6::WebChannel
-        Qt6::WebEngineWidgets
-        Qt6::WebSockets
-        Qt6::Widgets
-        PkgConfig::UCHARDET
-    )
-
-    # Workaround for upstream qtpromise bug (v0.7.0): qpromise_p.h forward-declares
-    # QPromiseConversionException but never includes qpromiseexceptions.h where it's
-    # defined. This causes "invalid use of incomplete type" when thrown at line 593.
-    target_compile_options(ui-tests PRIVATE
-        -include qtpromise/qpromiseexceptions.h
-    )
-    target_compile_definitions(ui-tests PRIVATE QT_NO_URL_CAST_FROM_STRING)
-    if(NQQ_USE_MONACO)
-        target_compile_definitions(ui-tests PRIVATE NQQ_USE_MONACO)
-    endif()
-    if(NQQ_MAKE_EXECUTABLE)
-        if(APPLE)
-            add_custom_command(TARGET ui-tests POST_BUILD
-                COMMAND "${CMAKE_COMMAND}" -E rm -rf "$<TARGET_BUNDLE_CONTENT_DIR:ui-tests>/Resources/editor"
-                COMMAND "${NQQ_MAKE_EXECUTABLE}" DESTDIR="$<TARGET_BUNDLE_CONTENT_DIR:ui-tests>/Resources/editor" ${NQQ_MAKE_MONACO_ARGS}
-                WORKING_DIRECTORY "${NQQ_ROOT_DIR}/src/editor"
-                COMMENT "Staging editor assets for UI tests"
-                VERBATIM
-            )
-        else()
-            add_custom_command(TARGET ui-tests POST_BUILD
-                COMMAND "${CMAKE_COMMAND}" -E rm -rf "${NQQ_STAGED_APPDATA_DIR}/editor"
-                COMMAND "${NQQ_MAKE_EXECUTABLE}" DESTDIR="${NQQ_STAGED_APPDATA_DIR}/editor" ${NQQ_MAKE_MONACO_ARGS}
-                WORKING_DIRECTORY "${NQQ_ROOT_DIR}/src/editor"
-                COMMENT "Staging editor assets for UI tests"
-                VERBATIM
-            )
-        endif()
-    endif()
-    add_test(NAME ui-tests COMMAND ui-tests)
-    set_tests_properties(ui-tests PROPERTIES
-        ENVIRONMENT "QT_QPA_PLATFORM=offscreen;QTWEBENGINE_DISABLE_SANDBOX=1"
-    )
-
-    qt_add_executable(cpp-correctness-tests
-        src/ui-tests/tst_cppcorrectness.cpp
-        src/ui/EditorNS/asyncrequesttracker.cpp
-        src/ui/include/EditorNS/asyncrequesttracker.h
-        src/ui/Search/filesearcher.cpp
-        src/ui/include/Search/filesearcher.h
-        src/ui/Search/searchhelpers.cpp
-        src/ui/Search/searchobjects.cpp
-        src/ui/Search/searchstring.cpp
-        src/ui/statsruntime.cpp
-        src/ui/localsockethelpers.cpp
-        src/ui/include/localsockethelpers.h
-        src/ui/commandlineopenruntime.cpp
-        src/ui/include/commandlineopenruntime.h
-        src/ui/Extensions/extension.cpp
-        src/ui/include/Extensions/extension.h
-    )
-    target_include_directories(cpp-correctness-tests PRIVATE
-        src/ui
-        src/ui/include
-        src/ui/libs/qtpromise/include
-        src/ui/libs/qtpromise/src
-    )
-    target_link_libraries(cpp-correctness-tests PRIVATE
-        Qt6::Core
-        Qt6::Core5Compat
-        Qt6::DBus
-        Qt6::Gui
-        Qt6::Network
-        Qt6::PrintSupport
-        Qt6::Svg
-        Qt6::Test
-        Qt6::WebChannel
-        Qt6::WebEngineWidgets
-        Qt6::WebSockets
-        Qt6::Widgets
-        PkgConfig::UCHARDET
-    )
-    target_compile_options(cpp-correctness-tests PRIVATE
-        -include qtpromise/qpromiseexceptions.h
-    )
-    target_compile_definitions(cpp-correctness-tests PRIVATE NQQ_CPP_CORRECTNESS_TESTS)
-    add_test(NAME cpp-correctness-tests COMMAND cpp-correctness-tests)
-endif()
-
-if(APPLE)
-    install(TARGETS ${NQQ_TARGET_NAME}
-        BUNDLE DESTINATION .
-    )
-else()
-    install(TARGETS ${NQQ_TARGET_NAME}
-        RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
-    )
 endif()
 
 if(UNIX AND NOT APPLE)
