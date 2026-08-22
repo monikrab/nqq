@@ -755,7 +755,10 @@ $(document).ready(function () {
         tabSize: 4,
         matchBrackets: true,
         extraKeys: {"Ctrl-Space": "autocomplete"},
-        theme: _defaultTheme
+        theme: _defaultTheme,
+
+        // Vim keybindings (JS-side)
+        keyMap: "vim"
     });
 
     editor.addKeyMap({
