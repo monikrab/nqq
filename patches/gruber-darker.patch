@@ -1,0 +1,169 @@
+commit a5558a047f0d18e7f58772290f726d8b437a9ef7
+Author: monikrab <arcticstrokes76@gmail.com>
+Date:   Sun Aug 23 13:10:14 2026 +0100
+
+    src/editor: added gruber-darker theme
+
+diff --git a/src/editor/libs/codemirror/theme/gruber-darker.css b/src/editor/libs/codemirror/theme/gruber-darker.css
+new file mode 100644
+index 0000000..8e1c90e
+--- /dev/null
++++ b/src/editor/libs/codemirror/theme/gruber-darker.css
+@@ -0,0 +1,157 @@
++/*
++    Name:       gruber-darker
++    Author:     Adapted from the Gruber Darker color scheme by Mike Gruber
++    Lightly adjusted: swapped builtin↔tag colors, added italic to comments,
++    bold to function defs/callees. Replaced selected light-blue tokens
++    (tag, link, url) with the theme's light green #8ebf7c.
++*/
++
++.cm-s-gruber-darker.CodeMirror,
++.cm-s-gruber-darker .CodeMirror-gutters {
++  background-color: #181818;
++  color: #e4e4ef;
++}
++.cm-s-gruber-darker .CodeMirror-gutters {
++  background: #181818;
++  border-right: 0px;
++}
++.cm-s-gruber-darker .CodeMirror-linenumber {
++  color: #52494e;
++}
++.cm-s-gruber-darker .CodeMirror-cursor {
++  border-left: 1px solid #f4f4ff;
++}
++.cm-s-gruber-darker div.CodeMirror-selected {
++  background: #52494e;
++}
++.cm-s-gruber-darker .CodeMirror-activeline-background {
++  background: #222222;
++}
++.cm-s-gruber-darker .CodeMirror-matchingbracket {
++  background: #52494e;
++  color: #f4f4ff !important;
++}
++
++/* Meta / preprocessor */
++.cm-s-gruber-darker span.cm-meta {
++  color: #9e95c7;
++}
++
++/* Comments – italic for subtle emphasis */
++.cm-s-gruber-darker span.cm-comment {
++  color: #cc8c3c;
++  font-style: italic;
++}
++
++/* Numbers & constants */
++.cm-s-gruber-darker span.cm-number,
++.cm-s-gruber-darker span.cm-atom {
++  color: #ffdd33;
++}
++
++/* Keywords – kept blue-grey */
++.cm-s-gruber-darker span.cm-keyword {
++  color: #96a6c8;
++}
++
++/* Variables */
++.cm-s-gruber-darker span.cm-variable {
++  color: #e4e4ef;
++}
++.cm-s-gruber-darker span.cm-variable-2 {
++  color: #96a6c8; /* variable.parameter */
++}
++.cm-s-gruber-darker span.cm-variable-3,
++.cm-s-gruber-darker span.cm-type {
++  color: #ffdd33;
++}
++
++/* Operators */
++.cm-s-gruber-darker span.cm-operator {
++  color: #c6c6c6;
++}
++
++/* Function definitions / callees – bold */
++.cm-s-gruber-darker span.cm-callee {
++  color: #ffdd33;
++  font-weight: bold;
++}
++.cm-s-gruber-darker span.cm-def {
++  color: #ffdd33;
++  font-weight: bold;
++}
++
++/* Properties (object keys) */
++.cm-s-gruber-darker span.cm-property {
++  color: #e4e4ef;
++}
++
++/* Strings */
++.cm-s-gruber-darker span.cm-string {
++  color: #73c936;
++}
++.cm-s-gruber-darker span.cm-string-2 {
++  color: #73c936;
++}
++
++/* Attributes / CSS classes – kept the original dark green */
++.cm-s-gruber-darker span.cm-qualifier {
++  color: #73c936;
++}
++.cm-s-gruber-darker span.cm-attribute {
++  color: #73c936;
++}
++
++/* Built-in functions – orange (unchanged from earlier swap) */
++.cm-s-gruber-darker span.cm-builtin {
++  color: #ffb964;
++}
++
++/* Tags – now light green instead of light blue */
++.cm-s-gruber-darker span.cm-tag {
++  color: #8ebf7c;
++}
++
++/* Links – now light green to match tags */
++.cm-s-gruber-darker span.cm-link {
++  color: #8ebf7c;
++  text-decoration: underline;
++}
++.cm-s-gruber-darker span.cm-url {
++  color: #8ebf7c;
++  text-decoration: underline;
++}
++
++/* Emphasis */
++.cm-s-gruber-darker span.cm-strong {
++  font-weight: bold;
++}
++.cm-s-gruber-darker span.cm-em {
++  font-style: italic;
++}
++
++/* Headers */
++.cm-s-gruber-darker span.cm-header {
++  color: #ffdd33;
++  font-weight: bold;
++}
++
++/* Blockquotes */
++.cm-s-gruber-darker span.cm-quote {
++  color: #52494e;
++}
++
++/* Horizontal rules */
++.cm-s-gruber-darker span.cm-hr {
++  color: #52494e;
++}
++
++/* Errors */
++.cm-s-gruber-darker span.cm-error {
++  color: #ff5555;
++  background-color: #282828;
++}
++.cm-s-gruber-darker span.cm-invalidchar {
++  color: #ff5555;
++  background-color: #282828;
++}
