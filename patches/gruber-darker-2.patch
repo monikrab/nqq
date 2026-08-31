@@ -181,3 +181,27 @@ index 8e1c90e..446f0c6 100644
 +  background-color: #04395e !important;
 +  color: #ffffff !important;
  }
+diff --git a/src/editor/libs/codemirror/theme/gruber-darker.css b/src/editor/libs/codemirror/theme/gruber-darker.css
+index 446f0c6..84fdcc1 100644
+--- a/src/editor/libs/codemirror/theme/gruber-darker.css
++++ b/src/editor/libs/codemirror/theme/gruber-darker.css
+@@ -25,7 +25,7 @@
+   background: #453d41;
+ }
+ .cm-s-gruber-darker .CodeMirror-activeline-background {
+-  background: #453d41;
++  background: #181818;
+ }
+ .cm-s-gruber-darker .CodeMirror-matchingbracket {
+   background: #ffdd33;
+@@ -153,6 +153,10 @@
+ }
+ 
+ 
++.CodeMirror {
++  font-weight: 550 !important;
++}
++
+ /* hints (experimental) */
+ .CodeMirror-hints {
+   background: #181818 !important;

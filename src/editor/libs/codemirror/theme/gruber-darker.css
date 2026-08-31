@@ -25,7 +25,7 @@
   background: #453d41;
 }
 .cm-s-gruber-darker .CodeMirror-activeline-background {
-  background: #453d41;
+  background: #181818;
 }
 .cm-s-gruber-darker .CodeMirror-matchingbracket {
   background: #ffdd33;
@@ -152,6 +152,10 @@
   color: #f43841;
 }
 
+
+.CodeMirror {
+  font-weight: 550 !important;
+}
 
 /* hints (experimental) */
 .CodeMirror-hints {
