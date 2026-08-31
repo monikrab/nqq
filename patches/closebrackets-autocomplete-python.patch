@@ -1,0 +1,50 @@
+diff --git a/src/editor/app.js b/src/editor/app.js
+index 22729b4..1d9cc97 100644
+--- a/src/editor/app.js
++++ b/src/editor/app.js
+@@ -758,7 +758,10 @@ $(document).ready(function () {
+         theme: _defaultTheme,
+ 
+         // Vim keybindings (JS-side)
+-        keyMap: "vim"
++        keyMap: "vim",
++
++        // Closebrackets (?)
++        autoCloseBrackets: true
+     });
+ 
+     editor.addKeyMap({
+@@ -787,6 +790,16 @@ $(document).ready(function () {
+ 
+     changeGeneration = editor.changeGeneration(true);
+ 
++    // Auto-autocomplete (?)
++    editor.on("inputRead", function(cm, change) {
++        var text = change.text[0];
++        if (text && /^[\w$]+$/.test(text)) {
++            cm.showHint({
++                completeSingle: false
++            });
++        }
++    });
++
+     editor.on("change", onChange);
+     editor.on("cursorActivity", onCursorActivity);
+ 
+diff --git a/src/editor/index.html b/src/editor/index.html
+index 9d3c012..fd2fb65 100644
+--- a/src/editor/index.html
++++ b/src/editor/index.html
+@@ -158,6 +158,12 @@
+     <script src="libs/codemirror/addon/selection/mark-selection.js"></script>
+     <script src="libs/codemirror/addon/show-invisibles/show-invisibles.js"></script>
+ 
++    <!-- Python Hints (HTML-side) -->
++    <script src="libs/codemirror/addon/hint/python-hint.js"></script>
++
++    <!-- Close Brackets Plugin (HTML-side) -->
++    <script src="libs/codemirror/addon/edit/closebrackets.js"></script>
++
+     <!-- Vim keybindings (HTML-side) -->
+     <script src="libs/codemirror/keymap/vim.js"></script>
+ 

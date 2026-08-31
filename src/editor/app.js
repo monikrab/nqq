@@ -758,7 +758,10 @@ $(document).ready(function () {
         theme: _defaultTheme,
 
         // Vim keybindings (JS-side)
-        keyMap: "vim"
+        keyMap: "vim",
+
+        // Closebrackets (?)
+        autoCloseBrackets: true
     });
 
     editor.addKeyMap({
@@ -786,6 +789,16 @@ $(document).ready(function () {
     });
 
     changeGeneration = editor.changeGeneration(true);
+
+    // Auto-autocomplete (?)
+    editor.on("inputRead", function(cm, change) {
+        var text = change.text[0];
+        if (text && /^[\w$]+$/.test(text)) {
+            cm.showHint({
+                completeSingle: false
+            });
+        }
+    });
 
     editor.on("change", onChange);
     editor.on("cursorActivity", onCursorActivity);

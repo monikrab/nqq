@@ -16,25 +16,25 @@
   border-right: 0px;
 }
 .cm-s-gruber-darker .CodeMirror-linenumber {
-  color: #52494e;
+  color: #65737e;
 }
 .cm-s-gruber-darker .CodeMirror-cursor {
   border-left: 1px solid #f4f4ff;
 }
 .cm-s-gruber-darker div.CodeMirror-selected {
-  background: #52494e;
+  background: #453d41;
 }
 .cm-s-gruber-darker .CodeMirror-activeline-background {
-  background: #222222;
+  background: #453d41;
 }
 .cm-s-gruber-darker .CodeMirror-matchingbracket {
-  background: #52494e;
-  color: #f4f4ff !important;
+  background: #ffdd33;
+  color: #453d41 !important;
 }
 
 /* Meta / preprocessor */
 .cm-s-gruber-darker span.cm-meta {
-  color: #9e95c7;
+  color: #f4f4ff;
 }
 
 /* Comments – italic for subtle emphasis */
@@ -46,12 +46,12 @@
 /* Numbers & constants */
 .cm-s-gruber-darker span.cm-number,
 .cm-s-gruber-darker span.cm-atom {
-  color: #ffdd33;
+  color: #95a99f;
 }
 
-/* Keywords – kept blue-grey */
+/* Keywords */
 .cm-s-gruber-darker span.cm-keyword {
-  color: #96a6c8;
+  color: #ffdd33;
 }
 
 /* Variables */
@@ -59,31 +59,29 @@
   color: #e4e4ef;
 }
 .cm-s-gruber-darker span.cm-variable-2 {
-  color: #96a6c8; /* variable.parameter */
+  color: #96a6c8;
 }
 .cm-s-gruber-darker span.cm-variable-3,
 .cm-s-gruber-darker span.cm-type {
-  color: #ffdd33;
+  color: #95a99f;
 }
 
 /* Operators */
 .cm-s-gruber-darker span.cm-operator {
-  color: #c6c6c6;
+  color: #e4e4ef;
 }
 
-/* Function definitions / callees – bold */
+/* Function definitions / callees */
 .cm-s-gruber-darker span.cm-callee {
-  color: #ffdd33;
-  font-weight: bold;
+  color: #96a6c8;
 }
 .cm-s-gruber-darker span.cm-def {
-  color: #ffdd33;
-  font-weight: bold;
+  color: #96a6c8;
 }
 
 /* Properties (object keys) */
 .cm-s-gruber-darker span.cm-property {
-  color: #e4e4ef;
+  color: #96a6c8;
 }
 
 /* Strings */
@@ -94,7 +92,7 @@
   color: #73c936;
 }
 
-/* Attributes / CSS classes – kept the original dark green */
+/* Attributes / CSS classes */
 .cm-s-gruber-darker span.cm-qualifier {
   color: #73c936;
 }
@@ -102,23 +100,23 @@
   color: #73c936;
 }
 
-/* Built-in functions – orange (unchanged from earlier swap) */
+/* Built-in functions */
 .cm-s-gruber-darker span.cm-builtin {
-  color: #ffb964;
+  color: #ffdd33;
 }
 
-/* Tags – now light green instead of light blue */
+/* Tags */
 .cm-s-gruber-darker span.cm-tag {
-  color: #8ebf7c;
+  color: #ffdd33;
 }
 
-/* Links – now light green to match tags */
+/* Links */
 .cm-s-gruber-darker span.cm-link {
-  color: #8ebf7c;
+  color: #0087d7;
   text-decoration: underline;
 }
 .cm-s-gruber-darker span.cm-url {
-  color: #8ebf7c;
+  color: #0087d7;
   text-decoration: underline;
 }
 
@@ -138,20 +136,45 @@
 
 /* Blockquotes */
 .cm-s-gruber-darker span.cm-quote {
-  color: #52494e;
+  color: #95a99f;
 }
 
 /* Horizontal rules */
 .cm-s-gruber-darker span.cm-hr {
-  color: #52494e;
+  color: #95a99f;
 }
 
 /* Errors */
 .cm-s-gruber-darker span.cm-error {
-  color: #ff5555;
-  background-color: #282828;
+  color: #f43841;
 }
 .cm-s-gruber-darker span.cm-invalidchar {
-  color: #ff5555;
-  background-color: #282828;
+  color: #f43841;
+}
+
+
+/* hints (experimental) */
+.CodeMirror-hints {
+  background: #181818 !important;
+  color: #d4d4d4 !important;
+  border: 1px solid #e4e4ef !important;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  padding: 4px 0;
+
+  font-size: 12px !important;
+  line-height: 1.25 !important; 
+}
+
+/* Individual suggestion items */
+.CodeMirror-hint {
+  color: #d4d4d4 !important;
+  padding: 4px 12px !important;
+  border-radius: 2px;
+}
+
+/* The currently active/selected suggestion */
+.CodeMirror-hint-active {
+  background-color: #04395e !important;
+  color: #ffffff !important;
 }
